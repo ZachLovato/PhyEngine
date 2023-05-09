@@ -12,5 +12,7 @@ void Time::Update()
     m_prevTime = m_time;
 
     m_deltaTime = elaspedTime / (float)SDL_GetPerformanceFrequency();
+
+    m_fps = 1 / m_deltaTime;
 }
 

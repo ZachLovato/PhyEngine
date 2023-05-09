@@ -20,4 +20,5 @@ public:
 	glm::vec2 _force{ 0, 0 };
 	float _mass{ 1 };
 	float _invMass{ 1 };
+	float _damping{ 1 };
 };

@@ -168,6 +168,7 @@
     <ClInclude Include="CircleShape.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Integrator.h" />
     <ClInclude Include="ParticleTest.h" />
     <ClInclude Include="PhysicsObject.h" />
     <ClInclude Include="Primitives.h" />

@@ -19,15 +19,22 @@ void Test::Initialize()
 	m_graphics->CreateWindow("Physics", 800, 600);
 	m_input = new Input();
 	m_time = new Time();
+	//<calculate the length in seconds>
+	m_time->SetFixedDeltaTime( 1 / 60 );
 	m_world = new World();
 }
 
 void Test::Run()
 {
 	Update();
-	m_fixedTime += m_time->TimeDelta();
+
 	//while loop
-	FixedUpdate();
+	m_fixedTime += m_time->TimeDelta();
+	while (m_fixedTime > m_time->TimeDelta())
+	{
+		FixedUpdate();
+		m_fixedTime -= m_time->TimeDelta();
+	}
 
 	// Render
 	PreRender();
