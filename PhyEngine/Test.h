@@ -14,6 +14,13 @@ public:
 	virtual void Initialize();
 	virtual void Run();
 
+	virtual void Update();
+	virtual void FixedUpdate() = 0;
+
+	virtual void PreRender();
+	virtual void Render() = 0;
+	virtual void PostRender();
+
 	bool IsQuit() { return m_quit; }
 
 protected:
@@ -22,6 +29,7 @@ protected:
 protected:
 	bool m_quit{ false };
 	World* m_world{ nullptr };
+	float m_fixedTime{ 0 };
 
 	class Graphics* m_graphics{ nullptr };
 	class Input* m_input{ nullptr };

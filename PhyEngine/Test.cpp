@@ -24,18 +24,33 @@ void Test::Initialize()
 
 void Test::Run()
 {
+	Update();
+	m_fixedTime += m_time->TimeDelta();
+	//while loop
+	FixedUpdate();
+
+	// Render
+	PreRender();
+	Render();
+	PostRender();
+}
+
+void Test::Update()
+{
 	UpdateEvents();
 
 	m_input->Update();
 	m_time->Update();
+}
 
-
-	m_graphics->SetColor({ 10, 120, 160, 255 });
+void Test::PreRender()
+{
+	m_graphics->SetColor({ 0, 255, 0, 255 });
 	m_graphics->Clear();
-	
-	m_graphics->DrawCircle(m_input->GetMousePosition(), 30, {randomf(), randomf(), randomf(), 1});
-	m_graphics->DrawFilledCircle(m_input->GetMousePosition(), 10, {randomf(), randomf(), randomf(), 1});
-	
+}
+
+void Test::PostRender()
+{
 	m_graphics->Present();
 }
 
