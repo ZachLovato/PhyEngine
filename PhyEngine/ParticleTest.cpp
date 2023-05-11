@@ -1,5 +1,6 @@
 #include "ParticleTest.h"
 #include <iostream>
+#include "Body.h"
 #include "CircleShape.h"
 
 void ParticleTest::Initialize()
@@ -17,16 +18,16 @@ void ParticleTest::Update()
 		glm::vec2 posModi = randomUnitCircle() * randomf(100, 200);
 		glm::vec4 color = { random(255), random(255), random(255), random(255) };
 
-		auto po = new PhysicsObject(
-			new Body(m_input->GetMousePosition(),
-				velocity), new CircleShape(randomf(10, 20), color));
+		auto body = new Body(new CircleShape(randomf(10, 20), color),
+			m_input->GetMousePosition(),
+				velocity);
 		/*
 		auto po = new PhysicsObject(
 			new Body(posModi + m_input->GetMousePosition(),
 				{20,20}), new CircleShape(randomf(10, 20), color));
 				*/
 
-		m_world->AddPhysicsObject(po);
+		m_world->AddBodyObject(body);
 	}
 }
 

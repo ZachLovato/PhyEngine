@@ -1,4 +1,5 @@
 #include "Body.h"
+#include "Shape.h"
 #include "Integrator.h"
 #include "World.h"
 
@@ -18,4 +19,9 @@ void Body::Step(float dt)
 	ClearForce();
 	// damping
 	_velocity *= (1.0f / (1.0f + (_damping * dt)));
+}
+
+void Body::Draw(Graphics* graphics)
+{
+	_shape->Draw(graphics, _position);
 }

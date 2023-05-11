@@ -1,7 +1,8 @@
 #include "ForceGenerator.h"
-#include "PhysicsObject.h"
+#include "body.h"
+
 
 void ForceGenerator::Draw(Graphics* graphics)
 {
-	if (m_physicsObject) m_physicsObject->Draw(graphics);
+	if (_body) _body->Draw(graphics);
 }

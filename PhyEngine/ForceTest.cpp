@@ -1,12 +1,16 @@
 #include "ForceTest.h"
-#include <iostream>
+#include "Body.h"
 #include "CircleShape.h"
+#include "GravityField.h"
 
 void ForceTest::Initialize()
 {
 	Test::Initialize();
 
 	World::_gravity = { 4, 9.81f };
+
+	auto ForceGen = new GravityField(1300);
+	m_world->AddForceGenerators(ForceGen);
 }
 
 void ForceTest::Update()
@@ -21,14 +25,13 @@ void ForceTest::Update()
 
 		float size = randomf(10, 20);
 
-		auto body = new Body(m_input->GetMousePosition(), velocity, randomf(1, 5));
 		auto shape = new CircleShape(size, color);
-		auto po = new PhysicsObject(body, shape);
+		auto body = new Body(shape, m_input->GetMousePosition(), velocity, randomf(1, 5));
 
-		po->GetBody()->_damping = 3;
-		po->GetBody()->_gravityScale = 30;
+		body->_damping = 3;
+		body->_gravityScale = 30;
 
-		m_world->AddPhysicsObject(po);
+		m_world->AddBodyObject(body);
 	}
 }
 

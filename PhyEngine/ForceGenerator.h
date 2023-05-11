@@ -1,15 +1,16 @@
 #pragma once
 #include <vector>
+#include <list>
 
 class ForceGenerator
 {
 public:
-	ForceGenerator(class PhysicsObject* physicsObject = nullptr) : m_physicsObject{ physicsObject } {}
+	ForceGenerator(class Body* body = nullptr) : _body{ body } {}
 
-	virtual void Apply(std::vector<class Body*> bodies) = 0;
+	virtual void Apply(std::list<class Body*> bodies) = 0;
 	virtual void Draw(class Graphics* graphics);
 
 protected:
-	class PhysicsObject* m_physicsObject{ nullptr };
+	class Body* _body{ nullptr };
 
 };
