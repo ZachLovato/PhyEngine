@@ -1,4 +1,5 @@
 #include "Test.h"
+#include <iostream>
 
 Test::Test()
 {
@@ -19,9 +20,8 @@ void Test::Initialize()
 	m_graphics->CreateWindow("Physics", 800, 600);
 	m_input = new Input();
 	m_time = new Time();
-	//<calculate the length in seconds>
-	m_time->SetFixedDeltaTime( 1 / 60 );
 	m_world = new World();
+	m_time->SetFixedDeltaTime( 1.0f / 60 );
 }
 
 void Test::Run()
@@ -29,11 +29,15 @@ void Test::Run()
 	Update();
 
 	//while loop
-	m_fixedTime += m_time->TimeDelta();
-	while (m_fixedTime > m_time->TimeDelta())
-	{
+	// gotta fix the while loop, while it look right something is making this run slow
+	// ad move fixed update into the while loop
 		FixedUpdate();
-		m_fixedTime -= m_time->TimeDelta();
+	m_fixedTime += m_time->TimeDelta();
+	while (m_fixedTime > m_time->GetFixedDeltaTime())
+	{
+		//std::cout << m_fixedTime << std::endl;
+		//std::cout << m_time->GetFixedDeltaTime() << std::endl;
+		m_fixedTime -= m_time->GetFixedDeltaTime();
 	}
 
 	// Render

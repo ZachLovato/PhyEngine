@@ -1,5 +1,8 @@
 #include "World.h"
 
+//later change this to negative
+glm::vec2 World::_gravity{ 0, 9.81f };
+
 World::~World()
 {
 	for (auto po : _objects)
