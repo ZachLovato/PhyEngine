@@ -25,6 +25,9 @@
     <Filter Include="Source Files\Shapes">
       <UniqueIdentifier>{8e8798ee-3ba6-41ac-911e-4bbd520f288a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Forces">
+      <UniqueIdentifier>{ae9290a9-cfac-4c25-856b-8a3625335f4b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -61,10 +64,13 @@
       <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="ForceGenerator.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Forces</Filter>
     </ClCompile>
     <ClCompile Include="GravityField.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Forces</Filter>
+    </ClCompile>
+    <ClCompile Include="GravForce.cpp">
+      <Filter>Source Files\Forces</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -108,10 +114,13 @@
       <Filter>Source Files\Tests</Filter>
     </ClInclude>
     <ClInclude Include="ForceGenerator.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Forces</Filter>
     </ClInclude>
     <ClInclude Include="GravityField.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="GravForce.h">
+      <Filter>Source Files\Forces</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

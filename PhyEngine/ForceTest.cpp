@@ -2,14 +2,15 @@
 #include "Body.h"
 #include "CircleShape.h"
 #include "GravityField.h"
+#include "GravForce.h"
 
 void ForceTest::Initialize()
 {
 	Test::Initialize();
 
-	World::_gravity = { 4, 9.81f };
+	World::_gravity = { 0, 9.81f };
 
-	auto ForceGen = new GravityField(1300);
+	auto ForceGen = new GravitationalForce(1300);
 	m_world->AddForceGenerators(ForceGen);
 }
 

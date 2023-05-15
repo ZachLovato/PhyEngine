@@ -17,7 +17,7 @@ World::~World()
 
 void World::Step(float dt)
 {
-	for (auto fg : _forceGens)
+	/*for (auto fg : _forceGens)
 	{
 		fg->Apply(_bodies);
 	}
@@ -25,7 +25,16 @@ void World::Step(float dt)
 	for (auto body : _bodies)
 	{
 		body->Step(dt);
+	}*/
+	if (_bodies.size() != 0 && _forceGens.size() != 0)
+	{
+		std::vector<Body*> bodies(_bodies.begin(), _bodies.end());
+		for (auto forceGenerator : _forceGens)
+		{
+			forceGenerator->Apply(bodies);
+		}
 	}
+	for (auto body : _bodies) body->Step(dt);
 }
 
 void World::Draw(Graphics* graphics)

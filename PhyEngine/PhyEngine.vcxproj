@@ -156,6 +156,7 @@
     <ClCompile Include="ForceGenerator.cpp" />
     <ClCompile Include="ForceTest.cpp" />
     <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="GravForce.cpp" />
     <ClCompile Include="GravityField.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="ForceGenerator.h" />
     <ClInclude Include="ForceTest.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="GravForce.h" />
     <ClInclude Include="GravityField.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Integrator.h" />
