@@ -72,6 +72,15 @@
     <ClCompile Include="GravForce.cpp">
       <Filter>Source Files\Forces</Filter>
     </ClCompile>
+    <ClCompile Include="PointForce.cpp">
+      <Filter>Source Files\Forces</Filter>
+    </ClCompile>
+    <ClCompile Include="AreaForce.cpp">
+      <Filter>Source Files\Forces</Filter>
+    </ClCompile>
+    <ClCompile Include="DragForce.cpp">
+      <Filter>Source Files\Forces</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ParticleTest.h">
@@ -120,6 +129,15 @@
       <Filter>Source Files\Forces</Filter>
     </ClInclude>
     <ClInclude Include="GravForce.h">
+      <Filter>Source Files\Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="PointForce.h">
+      <Filter>Source Files\Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="AreaForce.h">
+      <Filter>Source Files\Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="DragForce.h">
       <Filter>Source Files\Forces</Filter>
     </ClInclude>
   </ItemGroup>

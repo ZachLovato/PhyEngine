@@ -9,7 +9,7 @@ World::~World()
 {
 	for (auto body : _bodies)
 	{
-		delete body;
+		if (body != nullptr )delete body;
 	}
 
 	_bodies.clear();
@@ -17,15 +17,6 @@ World::~World()
 
 void World::Step(float dt)
 {
-	/*for (auto fg : _forceGens)
-	{
-		fg->Apply(_bodies);
-	}
-
-	for (auto body : _bodies)
-	{
-		body->Step(dt);
-	}*/
 	if (_bodies.size() != 0 && _forceGens.size() != 0)
 	{
 		std::vector<Body*> bodies(_bodies.begin(), _bodies.end());

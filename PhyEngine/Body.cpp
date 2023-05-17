@@ -25,3 +25,11 @@ void Body::Draw(Graphics* graphics)
 {
 	_shape->Draw(graphics, _position);
 }
+
+bool Body::Intersects(Body* body)
+{
+	glm::vec2 direction = _position - body->_position;
+	float distance = direction.length();
+	float radius = _shape->size + body->_shape->size;
+	return distance <= radius;
+}

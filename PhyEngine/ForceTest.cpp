@@ -3,15 +3,40 @@
 #include "CircleShape.h"
 #include "GravityField.h"
 #include "GravForce.h"
+#include <iostream>
+#include "PointForce.h"
+#include "AreaForce.h"
+#include "DragForce.h"
+
+//#define POINT_FORCE
+//#define AREA_FORCE
+#define DRAG_FORCE
 
 void ForceTest::Initialize()
 {
 	Test::Initialize();
 
-	World::_gravity = { 0, 9.81f };
+	World::_gravity = { 0, 0 };
 
-	auto ForceGen = new GravitationalForce(1300);
-	m_world->AddForceGenerators(ForceGen);
+#if defined(POINT_FORCE)
+	auto body = new Body(new CircleShape(200, { 1, 1, 1, 0.2f }), { 400, 300 }, { 0, 0 }, 0, Body::STATIC)
+		;
+	ForceGenerator* forceGenerator = new PointForce(body, 20);
+	m_world->AddForceGenerators(forceGenerator);
+#elif defined(AREA_FORCE)
+	auto body = new Body(new CircleShape(200, { 0.5f, 0.5f, 0.5f, 0.2f }), { 400, 300 }, { 0, 0 }, 0, Body::STATIC)
+		;
+	ForceGenerator* forceGenerator = new AreaForce(body, 20, -45);
+	m_world->AddForceGenerators(forceGenerator);
+#elif defined(DRAG_FORCE)
+	auto body = new Body(new CircleShape(200, { 1, 1, 1, 0.2f }), { 400, 300 }, { 0, 0 }, 0, Body::STATIC)
+		;
+	ForceGenerator* forceGenerator = new DragForce(body, 0.5f);
+	m_world->AddForceGenerators(forceGenerator);
+#endif
+
+	//auto ForceGen = new GravitationalForce(1300);
+	//m_world->AddForceGenerators(ForceGen);
 }
 
 void ForceTest::Update()
@@ -20,7 +45,8 @@ void ForceTest::Update()
 
 	if (m_input->GetMouseButton(0))
 	{
-		glm::vec2 velocity = { 0,0 };//{ randomf(-1, 1), randomf(-1,1) };
+		//glm::vec2 velocity = { 0,0 };
+		glm::vec2 velocity{ randomf(-1, 1), randomf(-1,1) };
 		glm::vec2 posModi = randomUnitCircle() * randomf(100, 200);
 		glm::vec4 color = { random(255), random(255), random(255), random(255) };
 

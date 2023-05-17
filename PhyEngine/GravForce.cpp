@@ -21,7 +21,7 @@ void GravitationalForce::Apply(std::vector<class Body*> bodies)
 			float force = m_strength * ((bodyA->_mass * bodyB->_mass) / distance);
 
 			glm::vec2 ndirection = glm::normalize(direction);
-			bodyA->ApplyForce(ndirection * bodyA->_force);
+			bodyA->ApplyForce(-ndirection * bodyA->_force);
 			bodyB->ApplyForce(ndirection * bodyB->_force);
 		}
 	}

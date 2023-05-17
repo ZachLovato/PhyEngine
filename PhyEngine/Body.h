@@ -24,6 +24,8 @@ public:
 	void ClearForce() { _force = glm::vec2{ 0, 0 }; };
 	void Draw(class Graphics* graphics);
 
+	bool Intersects(class Body* body);
+
 	class Shape* _shape{ nullptr };
 
 	Type _type{ Type::DYNAMIC };
