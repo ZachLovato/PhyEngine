@@ -1,7 +1,7 @@
 #include "ParticleTest.h"
 #include <iostream>
-#include "Body.h"
-#include "CircleShape.h"
+#include "../Physics/Shape/Body.h"
+#include "../Physics/Shape/CircleShape.h"
 
 void ParticleTest::Initialize()
 {

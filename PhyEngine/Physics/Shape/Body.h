@@ -12,10 +12,10 @@ public:
 	};
 
 	//Body(const glm::vec2& position, const glm::vec2& velocity) : _position {position}, _velocity {velocity} {}
-	Body(class Shape* shape, const glm::vec2& position, const glm::vec2& velocity = { 0, 0 }, const float mass = 1, Type type = Type::DYNAMIC) :
-		_shape{ shape }, _position { position }, _velocity{ velocity }, _mass{ mass }, _type{ type }
+	Body(class Shape* shapez, const glm::vec2& position, const glm::vec2& velocity = { 0, 0 }, const float mass = 1, Type type = Type::DYNAMIC) :
+		_shape{ shapez }, _position { position }, _velocity{ velocity }, _mass{ mass }, _type{ type }
 	{
-		if (type == STATIC) _mass = 0;
+		//if (type == STATIC) _mass = 0;
 		_invMass = (mass == 0) ? 0 : 1 / mass ;
 	}
 

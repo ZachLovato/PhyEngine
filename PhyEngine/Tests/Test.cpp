@@ -32,12 +32,11 @@ void Test::Run()
 	// gotta fix the while loop, while it look right something is making this run slow
 	// ad move fixed update into the while loop
 	m_fixedTime += m_time->TimeDelta();
-			FixedUpdate();
+		FixedUpdate();
 	/*
 	while (m_fixedTime >= m_time->GetFixedDeltaTime())
 	{
 		m_fixedTime -= m_time->GetFixedDeltaTime();
-		temp++;
 	}
 	*/
 

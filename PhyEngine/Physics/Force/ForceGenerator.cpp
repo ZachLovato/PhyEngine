@@ -1,5 +1,5 @@
 #include "ForceGenerator.h"
-#include "body.h"
+#include "../Shape/Body.h"
 
 
 void ForceGenerator::Draw(Graphics* graphics)

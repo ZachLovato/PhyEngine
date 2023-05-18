@@ -1,16 +1,16 @@
 #include "ForceTest.h"
-#include "Body.h"
-#include "CircleShape.h"
-#include "GravityField.h"
-#include "GravForce.h"
+#include "../Physics/Shape/Shape.h"
+#include "../Physics/Shape/CircleShape.h"
+#include "../Physics/GravityField.h"
+#include "../Physics/Force/GravForce.h"
 #include <iostream>
-#include "PointForce.h"
-#include "AreaForce.h"
-#include "DragForce.h"
+#include "../Physics/Force/PointForce.h"
+#include "../Physics/Force/AreaForce.h"
+#include "../Physics/Force/DragForce.h"
 
-//#define POINT_FORCE
+#define POINT_FORCE
 //#define AREA_FORCE
-#define DRAG_FORCE
+//#define DRAG_FORCE
 
 void ForceTest::Initialize()
 {
@@ -19,12 +19,12 @@ void ForceTest::Initialize()
 	World::_gravity = { 0, 0 };
 
 #if defined(POINT_FORCE)
-	auto body = new Body(new CircleShape(200, { 1, 1, 1, 0.2f }), { 400, 300 }, { 0, 0 }, 0, Body::STATIC)
+	auto body = new Body(new CircleShape(200, { 1, 1, 1, 1 }), { 400, 300 }, { 0, 0 }, 0, Body::STATIC)
 		;
 	ForceGenerator* forceGenerator = new PointForce(body, 20);
 	m_world->AddForceGenerators(forceGenerator);
 #elif defined(AREA_FORCE)
-	auto body = new Body(new CircleShape(200, { 0.5f, 0.5f, 0.5f, 0.2f }), { 400, 300 }, { 0, 0 }, 0, Body::STATIC)
+	auto body = new Body(new CircleShape(200, { 0.5f, 0.5f, 0.5f, 0.5f }), { 400, 300 }, { 0, 0 }, 0, Body::STATIC)
 		;
 	ForceGenerator* forceGenerator = new AreaForce(body, 20, -45);
 	m_world->AddForceGenerators(forceGenerator);

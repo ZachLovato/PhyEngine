@@ -1,11 +1,9 @@
-#include "ParticleTest.h"
-#include "ForceTest.h"
-
+#include "Tests/JointTest.h"
 
 
 int main(int arg, char* args[])
 {
-	Test* test = new ForceTest();
+	Test* test = new JointTest();
 
 	test->Initialize();
 

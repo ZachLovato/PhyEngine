@@ -1,5 +1,5 @@
 #pragma once
-#include "ForceGenerator.h"
+#include "Force/ForceGenerator.h"
 #include <vector>
 
 class GravityField : public ForceGenerator

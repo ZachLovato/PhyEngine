@@ -1,5 +1,5 @@
 #include "GravForce.h"
-#include "Body.h"
+#include "../Shape/Body.h"
 
 void GravitationalForce::Apply(std::vector<class Body*> bodies)
 {

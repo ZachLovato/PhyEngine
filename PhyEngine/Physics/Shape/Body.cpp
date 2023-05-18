@@ -1,7 +1,8 @@
 #include "Body.h"
 #include "Shape.h"
-#include "Integrator.h"
-#include "World.h"
+#include "../../Engine/Integrator.h"
+#include "../../Engine/World.h"
+#include "CircleShape.h"
 
 void Body::ApplyForce(const glm::vec2& force)
 {
@@ -13,7 +14,7 @@ void Body::Step(float dt)
 	if (_type != DYNAMIC) return;
 
 	// gravity
-	ApplyForce(World::_gravity * _gravityScale * _mass);
+	ApplyForce(-World::_gravity * _gravityScale * _mass);
 
 	Integrator::SemiImplicitEuler(*this, dt);
 	ClearForce();
@@ -29,7 +30,7 @@ void Body::Draw(Graphics* graphics)
 bool Body::Intersects(Body* body)
 {
 	glm::vec2 direction = _position - body->_position;
-	float distance = direction.length();
-	float radius = _shape->size + body->_shape->size;
+	float distance = glm::length(direction);
+	float radius = dynamic_cast<CircleShape*>(_shape)->radius + dynamic_cast<CircleShape*>(body->_shape)->radius;
 	return distance <= radius;
 }

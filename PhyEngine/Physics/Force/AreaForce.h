@@ -1,6 +1,6 @@
 #pragma once
 #include "ForceGenerator.h"
-#include "Body.h"
+#include "../Shape/Body.h"
 
 class AreaForce : public ForceGenerator
 {
