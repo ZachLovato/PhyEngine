@@ -1,8 +1,5 @@
 #pragma once
 #include <include/SDL.h>
-#include "Input.h"
-#include "Time.h"
-#include "Random.h"
 
 class Time
 {

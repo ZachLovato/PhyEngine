@@ -11,6 +11,12 @@ Joint::Joint(Body* bodyA, Body* bodyB, float stiffness, float restLength) :
 	if (restLength == 0) _restLength = glm::distance(bodyA->_position, bodyB->_position);
 }
 
+Joint::~Joint()
+{
+	delete _bodyA;
+	delete _bodyB;
+}
+
 void Joint::Step(float dt)
 {
 	glm::vec2 direction = _bodyA->_position - _bodyB->_position;
@@ -22,8 +28,8 @@ void Joint::Step(float dt)
 	float f = -_stiffness * x;
 
 	glm::vec2 ndir = glm::normalize(direction);
-	_bodyA->ApplyForce(f * -ndir);
-	_bodyB->ApplyForce(f * ndir);
+	_bodyA->ApplyForce(f * ndir);
+	_bodyB->ApplyForce(f * -ndir);
 }
 
 void Joint::Draw(Graphics* graphics)

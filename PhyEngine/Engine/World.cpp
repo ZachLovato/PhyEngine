@@ -4,7 +4,7 @@
 #include "../Physics/Joint.h"
 
 //later change this to negative
-glm::vec2 World::_gravity{ 0, -9.81f };
+glm::vec2 World::_gravity{ 0, 0 };
 
 World::~World()
 {

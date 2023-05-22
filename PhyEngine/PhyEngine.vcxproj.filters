@@ -63,9 +63,6 @@
     <ClCompile Include="Engine\Input.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Physics\Joint.cpp">
-      <Filter>Source Files\Physics</Filter>
-    </ClCompile>
     <ClCompile Include="Tests\ParticleTest.cpp">
       <Filter>Source Files\Tests</Filter>
     </ClCompile>
@@ -86,6 +83,9 @@
     </ClCompile>
     <ClCompile Include="Engine\World.cpp">
       <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\Joint.cpp">
+      <Filter>Source Files\Physics\Shape</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -116,20 +116,11 @@
     <ClInclude Include="Tests\JointTest.h">
       <Filter>Source Files\Tests</Filter>
     </ClInclude>
-    <ClInclude Include="Physics\Joint.h">
-      <Filter>Source Files\Physics</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Integrator.h">
       <Filter>Source Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Input.h">
       <Filter>Source Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Physics\GravityField.h">
-      <Filter>Source Files\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Physics\Force\GravForce.h">
-      <Filter>Source Files\Physics</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Graphics.h">
       <Filter>Source Files\Engine</Filter>
@@ -151,6 +142,15 @@
     </ClInclude>
     <ClInclude Include="Physics\Force\AreaForce.h">
       <Filter>Source Files\Physics\Force</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Force\GravForce.h">
+      <Filter>Source Files\Physics\Force</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\GravityField.h">
+      <Filter>Source Files\Physics\Force</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Joint.h">
+      <Filter>Source Files\Physics\Shape</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

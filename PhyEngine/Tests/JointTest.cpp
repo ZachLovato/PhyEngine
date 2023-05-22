@@ -2,24 +2,88 @@
 #include "../Physics/Joint.h"
 #include "../Physics/Shape/CircleShape.h"
 #include "../Physics/Shape/Body.h"
+#include <iostream>
 
-#define SPRING_STIFFENSS 250
-#define SPRING_LENGTH 50
-#define BODY_DAMPING 10
-#define CHAIN_SIZE 3
+#define SPRING_STIFFENSS 800
+#define SPRING_LENGTH 100
+#define BODY_DAMPING 20
+#define CHAIN_SIZE 7
+
+#define GRID
+#define GRID_WIDTH 3
+#define GRID_HEIGHT 5
 
 void JointTest::Initialize()
 {
 	Test::Initialize();
 
-	_anchor = new Body(new CircleShape(20, { 1, 1, 1, 1 }), { 400, 100 }, { 0, 0 }, 0, Body::KINEMATIC);
+	_anchor = new Body(new CircleShape(20, { 1, 1, 1, 1 }), {350, 100 }, { 0, 0 }, 0, Body::KINEMATIC);
 	m_world->AddBodyObject(_anchor);
 
 	auto prevBody = _anchor;
 
+#if defined(GRID)
+	auto links = new Body*[2][GRID_HEIGHT];
+	for (int t = 0; t < GRID_HEIGHT; t++)
+	{
+		links[0][t] = nullptr;
+	}
+
+	for (int i = 0; i < GRID_WIDTH; i++)
+	{
+		for (int j = 0; j < GRID_HEIGHT; j++)
+		{
+			glm::vec4 color = { random(255) ,random(255) ,random(255) , 1 };
+			if (i == 0 && j == 0 ) glm::vec4 color = {1 ,1 ,1 ,1 };
+			
+			glm::vec2 pos{ 400 + (50 * i), 100 + (50 * j)};
+
+			auto body = new Body(new CircleShape(20, color), pos, { 0, 0 }, 1, Body::DYNAMIC);
+			body->_gravityScale = 2;
+			body->_damping = BODY_DAMPING;
+			m_world->AddBodyObject(body);
+			links[1][j] = body;
+
+			auto joint = new Joint(body, prevBody, SPRING_STIFFENSS, SPRING_LENGTH);
+			m_world->AddJoint(joint);
+
+			if (links[0][j] != nullptr)
+			{
+				auto sJoint = new Joint(body, links[0][j], SPRING_STIFFENSS, SPRING_LENGTH);
+				m_world->AddJoint(sJoint);
+
+				if (j > 0)
+				{
+					auto diaJoint = new Joint(body, links[0][j - 1], SPRING_STIFFENSS, SPRING_LENGTH * 2);
+					m_world->AddJoint(diaJoint);
+				}
+				if (j < GRID_HEIGHT)
+				{
+					auto diaJoint = new Joint(body, links[0][j + 1], SPRING_STIFFENSS, SPRING_LENGTH * 2);
+					m_world->AddJoint(diaJoint);
+				}
+			}
+			
+
+			
+			prevBody = body;
+		}
+
+		// sets first row as the prev bodies
+		for (int t = 0; t < GRID_HEIGHT; t++)
+		{
+			links[0][t] = links[1][t];
+		}
+
+		prevBody = _anchor;
+	}
+#else
+	// Chain
 	for (int i = 0; i < CHAIN_SIZE; i++)
 	{
-		auto body = new Body(new CircleShape(20, { 0.5f, 0.5f, 0.5f, 1 }), { 400, 200 }, { 0, 0 }, 1, Body::DYNAMIC);
+		glm::vec4 color = { random(255) ,random(255) ,random(255) , 1};
+
+		auto body = new Body(new CircleShape(20, color), { 400, 200 }, { 0, 0 }, 1, Body::DYNAMIC);
 		body->_gravityScale = 2;
 		body->_damping = BODY_DAMPING;
 		m_world->AddBodyObject(body);
@@ -28,24 +92,18 @@ void JointTest::Initialize()
 		m_world->AddJoint(joint);
 
 		prevBody = body;
-
-		body = new Body(new CircleShape(20, { 1, 1, 1, 1 }), { 400, 200 }, { 0, 0 }, 1, Body::DYNAMIC);
-		body->_gravityScale = 2;
-		body->_damping = BODY_DAMPING;
-		m_world->AddBodyObject(body);
-
-		joint = new Joint(body, prevBody, SPRING_STIFFENSS, SPRING_LENGTH);
-		m_world->AddJoint(joint);
-
 	}
-
-
+#endif
 }
+
 
 void JointTest::Update()
 {
 	Test::Update();
-	_anchor->_position = m_input->GetMousePosition();
+	{
+		//_anchor->_position = { 400, 100 };
+		_anchor->_position = m_input->GetMousePosition();
+	}
 }
 
 void JointTest::FixedUpdate()
