@@ -4,10 +4,10 @@
 #include "../Physics/Shape/Body.h"
 #include <iostream>
 
-#define SPRING_STIFFENSS 800
-#define SPRING_LENGTH 100
-#define BODY_DAMPING 20
-#define CHAIN_SIZE 7
+#define SPRING_STIFFENSS 100
+#define SPRING_LENGTH 1
+#define BODY_DAMPING 10
+#define CHAIN_SIZE 4
 
 #define GRID
 #define GRID_WIDTH 3
@@ -17,7 +17,7 @@ void JointTest::Initialize()
 {
 	Test::Initialize();
 
-	_anchor = new Body(new CircleShape(20, { 1, 1, 1, 1 }), {350, 100 }, { 0, 0 }, 0, Body::KINEMATIC);
+	_anchor = new Body(new CircleShape(1, { 1, 1, 1, 1 }), {0, 0 }, { 0, 0 }, 0, Body::KINEMATIC);
 	m_world->AddBodyObject(_anchor);
 
 	auto prevBody = _anchor;
@@ -36,9 +36,9 @@ void JointTest::Initialize()
 			glm::vec4 color = { random(255) ,random(255) ,random(255) , 1 };
 			if (i == 0 && j == 0 ) glm::vec4 color = {1 ,1 ,1 ,1 };
 			
-			glm::vec2 pos{ 400 + (50 * i), 100 + (50 * j)};
+			glm::vec2 pos{ (3 * i), (3 * j)};
 
-			auto body = new Body(new CircleShape(20, color), pos, { 0, 0 }, 1, Body::DYNAMIC);
+			auto body = new Body(new CircleShape(0.5f, color), pos, { 0, 0 }, 1, Body::DYNAMIC);
 			body->_gravityScale = 2;
 			body->_damping = BODY_DAMPING;
 			m_world->AddBodyObject(body);
@@ -83,8 +83,8 @@ void JointTest::Initialize()
 	{
 		glm::vec4 color = { random(255) ,random(255) ,random(255) , 1};
 
-		auto body = new Body(new CircleShape(20, color), { 400, 200 }, { 0, 0 }, 1, Body::DYNAMIC);
-		body->_gravityScale = 2;
+		auto body = new Body(new CircleShape(0.5f, color), { -10, -2 * i }, { 0, 0 }, 1, Body::DYNAMIC);
+		//body->_gravityScale = 150;
 		body->_damping = BODY_DAMPING;
 		m_world->AddBodyObject(body);
 
@@ -102,7 +102,7 @@ void JointTest::Update()
 	Test::Update();
 	{
 		//_anchor->_position = { 400, 100 };
-		_anchor->_position = m_input->GetMousePosition();
+		_anchor->_position = m_graphics->ScreenToWorld(m_input->GetMousePosition());
 	}
 }
 
