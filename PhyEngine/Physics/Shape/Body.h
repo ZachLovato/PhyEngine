@@ -16,7 +16,7 @@ public:
 		_shape{ shapez }, _position { position }, _velocity{ velocity }, _mass{ mass }, _type{ type }
 	{
 		//if (type == STATIC) _mass = 0;
-		_invMass = (mass == 0) ? 0 : 1 / mass ;
+		_invMass = (mass == 0 || type != DYNAMIC) ? 0 : 1 / mass ;
 	}
 
 	void ApplyForce(const glm::vec2& force);

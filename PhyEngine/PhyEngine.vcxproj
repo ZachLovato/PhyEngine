@@ -157,6 +157,8 @@
     <ClCompile Include="Engine\Time.cpp" />
     <ClCompile Include="Engine\World.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Physics\Collision\Collision.cpp" />
+    <ClCompile Include="Physics\Collision\Contact.h" />
     <ClCompile Include="Physics\Force\AreaForce.cpp" />
     <ClCompile Include="Physics\Force\DragForce.cpp" />
     <ClCompile Include="Physics\Force\ForceGenerator.cpp" />
@@ -166,6 +168,8 @@
     <ClCompile Include="Physics\Joint.cpp" />
     <ClCompile Include="Physics\Shape\Body.cpp" />
     <ClCompile Include="Physics\Shape\CircleShape.cpp" />
+    <ClCompile Include="Tests\CollisionTest.cpp" />
+    <ClCompile Include="Tests\CollisionTest.h" />
     <ClCompile Include="Tests\ForceTest.cpp" />
     <ClCompile Include="Tests\JointTest.cpp" />
     <ClCompile Include="Tests\ParticleTest.cpp" />
@@ -179,6 +183,7 @@
     <ClInclude Include="Engine\Random.h" />
     <ClInclude Include="Engine\Time.h" />
     <ClInclude Include="Engine\World.h" />
+    <ClInclude Include="Physics\Collision\Collision.h" />
     <ClInclude Include="Physics\Force\AreaForce.h" />
     <ClInclude Include="Physics\Force\DragForce.h" />
     <ClInclude Include="Physics\Force\ForceGenerator.h" />

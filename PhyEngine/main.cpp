@@ -1,9 +1,10 @@
 #include "Tests/JointTest.h"
+#include "Tests/CollisionTest.h"
 
 
 int main(int arg, char* args[])
 {
-	Test* test = new JointTest();
+	Test* test = new CollisionTest();
 
 	test->Initialize();
 
