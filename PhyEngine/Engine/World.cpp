@@ -5,7 +5,7 @@
 #include "../Physics/Collision/Collision.h"
 #include <vector>
 
-glm::vec2 World::_gravity{ 0, 0 };
+glm::vec2 World::_gravity{ 0, 9.81 };
 
 World::~World()
 {
@@ -34,6 +34,7 @@ void World::Step(float dt)
 	std::vector<Contact> contacts;
 	Collision::CreateContacts(bodies, contacts);
 	Collision::SeparateContacts(contacts);
+	Collision::ResolveContacts(contacts);
 }
 
 void World::Draw(Graphics* graphics)

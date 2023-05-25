@@ -5,8 +5,9 @@
 
 namespace Collision
 {
-	void CreateContacts(std::vector<Body*> bodies, std::vector<Contact>& contacts);
+	void CreateContacts(std::vector<Body*>& bodies, std::vector<Contact>& contacts);
 	Contact GenerateContact(Body* bodyA, Body* bodyB);
 
 	void SeparateContacts(std::vector<Contact>& contacts);
+	void ResolveContacts(std::vector<Contact>& contacts);
 }

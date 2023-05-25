@@ -53,7 +53,8 @@ void ForceTest::Update()
 		float size = randomf(10, 20);
 
 		auto shape = new CircleShape(size, color);
-		auto body = new Body(shape, m_input->GetMousePosition(), velocity, randomf(1, 5));
+		glm::vec2 pos = m_graphics->ScreenToWorld(m_input->GetMousePosition());
+		auto body = new Body(shape, pos, velocity, randomf(1, 5));
 
 		body->_damping = 3;
 		body->_gravityScale = 30;
@@ -64,7 +65,6 @@ void ForceTest::Update()
 
 void ForceTest::FixedUpdate()
 {
-	//m_world->Step(m_time->TimeDelta());
 	m_world->Step(m_time->GetFixedDeltaTime());
 }
 
