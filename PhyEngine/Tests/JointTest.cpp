@@ -17,7 +17,7 @@ void JointTest::Initialize()
 {
 	Test::Initialize();
 
-	_anchor = new Body(new CircleShape(1, { 1, 1, 1, 1 }), {0, 0 }, { 0, 0 }, 0, Body::KINEMATIC);
+	_anchor = new Body(new CircleShape(1, { 1, 1, 1, 1 }), m_graphics->WorldToScreen({ 0, 0 }), { 0, 0 }, 0, Body::KINEMATIC);
 	m_world->AddBodyObject(_anchor);
 
 	auto prevBody = _anchor;
@@ -37,8 +37,8 @@ void JointTest::Initialize()
 			if (i == 0 && j == 0 ) glm::vec4 color = {1 ,1 ,1 ,1 };
 			
 			glm::vec2 pos{ (3 * i), (3 * j)};
-
-			auto body = new Body(new CircleShape(0.5f, color), pos, { 0, 0 }, 1, Body::DYNAMIC);
+			
+			auto body = new Body(new CircleShape(0.5f, color), m_graphics->WorldToScreen(pos), { 0, 0 }, 1, Body::DYNAMIC);
 			body->_gravityScale = 2;
 			body->_damping = BODY_DAMPING;
 			m_world->AddBodyObject(body);

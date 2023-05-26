@@ -17,7 +17,7 @@ void ParticleTest::Update()
 		glm::vec2 posModi = randomUnitCircle() * randomf(100, 200);
 		glm::vec4 color = { random(255), random(255), random(255), random(255) };
 
-		auto body = new Body(new CircleShape(randomf(10, 20), color),
+		auto body = new Body(new CircleShape(randomf(0.2f, 0.3f), color),
 			m_graphics->ScreenToWorld(m_input->GetMousePosition()),
 				velocity);
 		/*
@@ -37,6 +37,6 @@ void ParticleTest::FixedUpdate()
 
 void ParticleTest::Render()
 {
-	m_graphics->DrawCircle(m_graphics->ScreenToWorld(m_input->GetMousePosition()), 30, { randomf(), randomf(), randomf(), 1 });
+	m_graphics->DrawCircle((m_input->GetMousePosition()), 30, { randomf(), randomf(), randomf(), 1 });
 	m_world->Draw(m_graphics);
 }

@@ -20,6 +20,7 @@ World::~World()
 void World::Step(float dt)
 {
 	for (auto joint : _joints) joint->Step(dt);
+	if (_bodies.empty()) return;
 	std::vector<Body*> bodies(_bodies.begin(), _bodies.end());
 	if (_bodies.size() != 0 && _forceGens.size() != 0)
 	{
